@@ -46,9 +46,14 @@ app.use("/api", authRoutes);
 app.use("/api", commentRoutes);
 
 io.on("connection", (socket) => {
-  console.log("A user connected");
-  socket.on("disconnect", () => {
-    console.log("A user disconnected");
+  console.log("Client connected:", socket.id);
+
+  // Listen for new comments from client
+  socket.on("new-comment", (comment) => {
+    console.log("New comment received:", comment);
+
+    // Broadcast the comment to all connected clients
+    io.emit("new-comment", comment);
   });
 });
 
@@ -56,4 +61,3 @@ const PORT = 4000;
 server.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
-
