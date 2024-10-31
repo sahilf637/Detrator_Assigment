@@ -85,3 +85,6 @@ For both frontend and backend:
 2. Enter a username to log in.
 3. Add comments and see them appear in real-time across all connected clients.
 
+
+![Comments System Overview](frontend/my-app/public/image.png) 
+
